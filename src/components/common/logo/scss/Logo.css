@@ -1,0 +1,17 @@
+.logo-wrapper {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
+}
+
+.logo-app-name {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 36px;
+  color: #49AB71;
+  font-weight: 600;
+}
+
+.logo-link {
+  text-decoration: none;
+}/*# sourceMappingURL=Logo.css.map */
