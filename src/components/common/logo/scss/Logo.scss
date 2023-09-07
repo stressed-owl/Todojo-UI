@@ -1,5 +1,4 @@
 $font-family: "IBM Plex Mono", monospace;
-$primary: #49AB71;
 
 .logo-wrapper {
   display: flex;
@@ -10,7 +9,7 @@ $primary: #49AB71;
 .logo-app-name {
   font-family: $font-family;
   font-size: 36px;
-  color: $primary;
+  color: #fff;
   font-weight: 600;
 }
 
