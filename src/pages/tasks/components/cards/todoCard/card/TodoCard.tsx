@@ -12,17 +12,14 @@ interface TodoCardProps {
   task: string;
   description?: string;
   date: string;
-  onDeleteToDo: React.MouseEventHandler;
+  onDeleteTodo: React.MouseEventHandler;
 }
 
-const TodoCard = ({ task, date, description, onDeleteToDo }: TodoCardProps) => {
+const TodoCard = ({ task, date, description, onDeleteTodo }: TodoCardProps) => {
   return (
-    <Card className="mt-6 w-72 min-h-[240px] bg-black rounded-md flex flex-col justify-between p-4 hover:duration-300 hover:bg-gray-800">
+    <Card className="mt-6 w-72 min-h-[240px] bg-black rounded-md flex flex-col justify-between p-4">
       <CardBody>
-        <Typography
-          color="white"
-          className="mb-2 text-2xl font-medium"
-        >
+        <Typography color="white" className="mb-2 text-2xl font-medium">
           {date}
         </Typography>
         <Typography className="text-[18px] font-bold text-white">
@@ -43,7 +40,7 @@ const TodoCard = ({ task, date, description, onDeleteToDo }: TodoCardProps) => {
           className="font-semibold bg-blue-300 p-2 rounded-sm"
         >
           <IconButton
-            onClick={onDeleteToDo}
+            onClick={onDeleteTodo}
             className="text-white p-2 rounded-xl"
           >
             <DeleteIcon />

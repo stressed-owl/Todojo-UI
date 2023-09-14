@@ -20,9 +20,9 @@ export const addTodo = createAsyncThunk("addTodo", async (todo: Todo) => {
   }
 });
 
-export const deleteTodo = createAsyncThunk("deleteTodo", async (id: number) => {
+export const deleteTodo = createAsyncThunk("deleteTodo", async (todo: Todo) => {
   try {
-    const response = await API.delete(`/todos/${id}`);
+    const response = await API.delete(`/todos/${todo.id}`);
     return { id: response.data };
   } catch (error) {
     return { error: error };
@@ -32,7 +32,7 @@ export const deleteTodo = createAsyncThunk("deleteTodo", async (id: number) => {
 export const updateTodo = createAsyncThunk("updateTodo", async (id: number) => {
   try {
     const response = await API.put(`/todos/${id}`);
-    return response.data;
+    return { todo: response.data };
   } catch (error) {
     return { error: error };
   }
@@ -50,14 +50,25 @@ const todosSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(fetchTodos.pending, (state, action) => {
+        return {
+          ...state,
+          loading: true,
+        };
+      })
       .addCase(fetchTodos.fulfilled, (state, action) => {
-        state.todos = action.payload.todos;
+        return {
+          loading: false,
+          todos: action.payload.todos,
+        };
       })
       .addCase(addTodo.fulfilled, (state, action) => {
         state.todos.push(action.payload.todo);
       })
       .addCase(deleteTodo.fulfilled, (state, action) => {
-        state.todos.filter((todo) => todo.id !== action.payload.id);
+        state.todos = state.todos.filter(
+          (todo) => todo.id !== action.payload.id
+        );
       });
   },
 });
