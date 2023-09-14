@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "../../header/Header";
-import "./scss/Layout.css";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,11 +7,9 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="layout">
+    <div>
       <Header />
-      <div className="layout-right">
-        <div className="layout-right-content">{children}</div>
-      </div>
+      {children}
     </div>
   );
 };
