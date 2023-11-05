@@ -9,7 +9,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
       <Header />
-      {children}
+      { children }
     </div>
   );
 };

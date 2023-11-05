@@ -2,16 +2,16 @@ import { Button, Card, Input, Typography } from "@material-tailwind/react";
 import AddIcon from "@mui/icons-material/Add";
 
 interface TodoFormProps {
-  onTaskValue: string;
-  onDescriptionValue: string;
+  taskValue: string;
+  descriptionValue: string;
   onTaskChange: React.ChangeEventHandler<HTMLInputElement>;
   onDescriptionChange: React.ChangeEventHandler<HTMLInputElement>;
   onTodoAdd: React.MouseEventHandler;
 }
 
 const TodoForm = ({
-  onTaskValue,
-  onDescriptionValue,
+  taskValue,
+  descriptionValue,
   onTaskChange,
   onDescriptionChange,
   onTodoAdd,
@@ -27,8 +27,8 @@ const TodoForm = ({
             <Input
               variant="outlined"
               crossOrigin=""
-              value={onTaskValue}
-              onChange={onTaskChange}
+              value={ taskValue }
+              onChange={ onTaskChange }
               type="text"
               placeholder="Task"
               color="orange"
@@ -37,8 +37,8 @@ const TodoForm = ({
             <Input
               variant="outlined"
               crossOrigin=""
-              value={onDescriptionValue}
-              onChange={onDescriptionChange}
+              value={ descriptionValue }
+              onChange={ onDescriptionChange }
               type="text"
               placeholder="Description"
               color="orange"
@@ -50,7 +50,7 @@ const TodoForm = ({
               variant="gradient"
               size="lg"
               disabled={false}
-              onClick={onTodoAdd}
+              onClick={ onTodoAdd }
               className="flex items-center gap-2 text-black text-lg hover:text-gray-600"
             >
               <AddIcon />

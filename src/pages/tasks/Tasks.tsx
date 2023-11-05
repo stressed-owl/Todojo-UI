@@ -19,7 +19,7 @@ const Tasks = () => {
 
   const [updateState, setUpdateState] = useState(false);
 
-  // Event handlers
+  // Event handlers for task and description
   const handleChangeTask = (event: React.ChangeEvent<HTMLInputElement>) => {
     _setTodo(event.target.value);
   };
@@ -63,10 +63,10 @@ const Tasks = () => {
       <div className="max-w-7xl m-auto p-4">
         <div className="flex justify-center mt-3">
           <TodoForm
-            onTaskValue={_todo}
+            taskValue={_todo}
             onTaskChange={handleChangeTask}
             onDescriptionChange={handleChangeDescription}
-            onDescriptionValue={description}
+            descriptionValue={description}
             onTodoAdd={() => handleAddTodo(todo)}
           />
         </div>

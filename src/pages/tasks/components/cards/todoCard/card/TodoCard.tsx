@@ -20,13 +20,13 @@ const TodoCard = ({ task, date, description, onDeleteTodo }: TodoCardProps) => {
     <Card className="mt-6 w-72 min-h-[240px] bg-black rounded-md flex flex-col justify-between p-4">
       <CardBody>
         <Typography color="white" className="mb-2 text-2xl font-medium">
-          {date}
+          { date }
         </Typography>
         <Typography className="text-[18px] font-bold text-white">
-          {task}
+          { task }
         </Typography>
         <Typography className="text-[15px] text-white mt-2">
-          {description}
+          { description }
         </Typography>
       </CardBody>
       <CardFooter divider={true} className="flex justify-center items-center">
@@ -40,7 +40,7 @@ const TodoCard = ({ task, date, description, onDeleteTodo }: TodoCardProps) => {
           className="font-semibold bg-blue-300 p-2 rounded-sm"
         >
           <IconButton
-            onClick={onDeleteTodo}
+            onClick={ onDeleteTodo }
             className="text-white p-2 rounded-xl"
           >
             <DeleteIcon />

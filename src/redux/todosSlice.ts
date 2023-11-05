@@ -45,7 +45,7 @@ const initialState = {
 } as TodosState;
 
 const todosSlice = createSlice({
-  name: "counter",
+  name: "todos",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -62,13 +62,33 @@ const todosSlice = createSlice({
           todos: action.payload.todos,
         };
       })
+      .addCase(addTodo.pending, (state, action) => {
+        return {
+          ...state,
+          loading: true
+        }
+      })
       .addCase(addTodo.fulfilled, (state, action) => {
         state.todos.push(action.payload.todo);
+        return {
+          ...state,
+          loading: false
+        }
+      })
+      .addCase(deleteTodo.pending, (state, action) => {
+        return {
+          ...state,
+          loading: true
+        }
       })
       .addCase(deleteTodo.fulfilled, (state, action) => {
         state.todos = state.todos.filter(
           (todo) => todo.id !== action.payload.id
         );
+        return {
+          ...state,
+          loading: false
+        }
       });
   },
 });
