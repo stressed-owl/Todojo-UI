@@ -17,9 +17,9 @@ const TodoForm = ({
   onTodoAdd,
 }: TodoFormProps) => {
   return (
-    <Card color="transparent">
+    <Card placeholder={undefined} color="transparent">
       <div className="flex flex-col justify-center items-center">
-        <Typography className="text-[20px] font-semibold">
+        <Typography placeholder={undefined} className="text-[20px] font-semibold">
           Add to-do down below
         </Typography>
         <form className="mt-4">
@@ -47,6 +47,7 @@ const TodoForm = ({
           </div>
           <div className="flex mt-8 items-center justify-center">
             <Button
+              placeholder={undefined}
               variant="gradient"
               size="lg"
               disabled={false}

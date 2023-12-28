@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { addTodo, deleteTodo, fetchTodos } from "../../redux/todosSlice";
 import TodoCard from "./components/cards/todoCard/card/TodoCard";
 import TodoForm from "./components/form/TodoForm";
-import { descriptionExamples, taskExamples } from "../../data/Data";
+import { descriptionExamples, taskExamples, motivationalPhrases } from "../../data/Data";
 
 const Tasks = () => {
   const state = useAppSelector((state) => state.todos);
@@ -13,11 +13,16 @@ const Tasks = () => {
   const [_todo, _setTodo] = useState(
     taskExamples[Math.floor(Math.random() * taskExamples.length)]
   );
+
   const [description, setDescription] = useState(
-    descriptionExamples[Math.floor(Math.random() * taskExamples.length)]
+    descriptionExamples[Math.floor(Math.random() * descriptionExamples.length)]
   );
 
-  const [updateState, setUpdateState] = useState(false);
+  const [motivationalPhrase, setMotivationalPhrase] = useState(
+    motivationalPhrases[Math.floor(Math.random() * motivationalPhrases.length)]
+  )
+
+  const [completeTodoState, setCompleteTodoState] = useState(false);
 
   // Event handlers for task and description
   const handleChangeTask = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,19 +54,20 @@ const Tasks = () => {
     }
   };
 
-  const handleDeleteTodo = (todo: Todo) => {
+  const handleCompleteTodo = (todo: Todo) => {
     dispatch(deleteTodo(todo));
-    setUpdateState((prevState) => !prevState);
-  };
+    setCompleteTodoState((prevState) => !prevState);
+  }
 
   useEffect(() => {
-    dispatch(fetchTodos());
-  }, [dispatch, updateState]);
+      dispatch(fetchTodos());
+  }, [dispatch, completeTodoState]);
 
   return (
     <div>
       <div className="max-w-7xl m-auto p-4">
-        <div className="flex justify-center mt-3">
+        <p className="mt-5 text-center font-bold text-3xl">{ motivationalPhrase }</p>
+        <div className="flex justify-center mt-8">
           <TodoForm
             taskValue={_todo}
             onTaskChange={handleChangeTask}
@@ -70,20 +76,16 @@ const Tasks = () => {
             onTodoAdd={() => handleAddTodo(todo)}
           />
         </div>
-
         <div className="mt-6">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-center">
             <p className="text-[32px] font-semibold">Tasks</p>
-            <p className="text-[17px]">
-              Filtering <sup className="ml-1">Coming soon...</sup>
-            </p>
           </div>
           <div className="mt-7 flex flex-wrap gap-3 justify-center">
             {state.todos.map((todo, id) => (
               <TodoCard
                 key={id}
                 {...todo}
-                onDeleteTodo={() => handleDeleteTodo(todo)}
+                onCompleteTodo={() => handleCompleteTodo(todo)}
               />
             ))}
           </div>

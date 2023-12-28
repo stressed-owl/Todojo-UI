@@ -23,16 +23,16 @@ export const addTodo = createAsyncThunk("addTodo", async (todo: Todo) => {
 export const deleteTodo = createAsyncThunk("deleteTodo", async (todo: Todo) => {
   try {
     const response = await API.delete(`/todos/${todo.id}`);
-    return { id: response.data };
+    return { todo: response.data };
   } catch (error) {
     return { error: error };
   }
 });
 
-export const updateTodo = createAsyncThunk("updateTodo", async (id: number) => {
+export const updateTodo = createAsyncThunk("updateTodo", async (id?: number) => {
   try {
     const response = await API.put(`/todos/${id}`);
-    return { todo: response.data };
+    return { id: response.data };
   } catch (error) {
     return { error: error };
   }
@@ -51,44 +51,38 @@ const todosSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchTodos.pending, (state, action) => {
-        return {
-          ...state,
-          loading: true,
-        };
+        state.loading = true;
       })
       .addCase(fetchTodos.fulfilled, (state, action) => {
-        return {
-          loading: false,
-          todos: action.payload.todos,
-        };
+        state.loading = false;
+        state.todos = action.payload.todos;
+      })
+      .addCase(fetchTodos.rejected, (state, action) => {
+        state.loading = false;
       })
       .addCase(addTodo.pending, (state, action) => {
-        return {
-          ...state,
-          loading: true
-        }
+        state.loading = true;
       })
       .addCase(addTodo.fulfilled, (state, action) => {
+        state.loading = false;
         state.todos.push(action.payload.todo);
-        return {
-          ...state,
-          loading: false
-        }
+      })
+      .addCase(addTodo.rejected, (state, action) => {
+        state.loading = false;
       })
       .addCase(deleteTodo.pending, (state, action) => {
-        return {
-          ...state,
-          loading: true
-        }
+        state.loading = true;
       })
       .addCase(deleteTodo.fulfilled, (state, action) => {
+        state.loading = false;
+        console.log('STATE TODOS', state.todos);
+        console.log('PAYLOAD ID', action.payload.todo);
         state.todos = state.todos.filter(
-          (todo) => todo.id !== action.payload.id
+          (todo) => todo.id !== action.payload.todo.id
         );
-        return {
-          ...state,
-          loading: false
-        }
+      })
+      .addCase(deleteTodo.rejected, (state, action) => {
+        state.loading = false;
       });
   },
 });
