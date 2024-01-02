@@ -4,7 +4,7 @@ import Tasks from "../pages/tasks/Tasks";
 const Root = () => {
   return (
     <Layout>
-      <Tasks />
+        <Tasks />
     </Layout>
   );
 };

@@ -9,11 +9,11 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
-      <Header />
-      <div className="min-h-[100vh]">
-        { children }
-      </div>
-      <Footer />
+        <Header />
+        <div className="min-h-[100vh] max-w-[1500px] m-auto mt-[150px] z-10">
+          { children }
+        </div>
+        <Footer />
     </div>
   );
 };

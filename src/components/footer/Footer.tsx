@@ -1,21 +1,46 @@
-import React from 'react'
-import Logo from '../common/logo/Logo';
+import Logo from "../common/logo/Logo";
+import { footerMainLinks, footerSocialMediaLinks } from "../../data/Data";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className='shadow-xl rounded-b-3xl'>
-        <div className='flex flex-col items-center justify-center p-8'>
-            <Logo />
-            <blockquote>
-                <p className='italic mt-5'>There's no light without dark. There's no joy without pain</p>
-            </blockquote>
-            <p className='text-center mt-12'>© 2023 Todojo Company. All rights reserved. <br/>
-            Reproduction or distribution without permission is strictly prohibited. <br/>
-            Unauthorized copying or reproduction of this material is prohibited. <br/>
-            </p>
+    <footer className="mt-[150px]">
+      <div className="max-w-[1600px] m-auto p-8">
+
+        <div>
+          <h3 className="font-bold">SOCIAL MEDIA</h3>
+          <hr className="border-black mt-2"/>
+          <div className="flex flex-col gap-y-2 mt-6">
+          {footerSocialMediaLinks.map(link => (
+            <Link to={link.path} target="true">
+                <p className="text-[14px]">{link.name}</p>
+            </Link>
+          ))}
+          </div>
         </div>
+
+        <blockquote className="flex items-center justify-center">
+          <div className="italic mt-5">
+            <p>There's no light without dark.</p>
+            <p className="flex items-center justify-center">There's no joy without pain.</p>
+          </div>
+        </blockquote>
+
+        <div className="flex items-center justify-between mt-10">
+          <Logo />
+          <div className="flex gap-x-20">
+            {footerMainLinks.map((link) => (
+              <Link to={link.path}>
+                <p className="text-[15px]">{link.name}</p>
+              </Link>
+            ))}
+          </div>
+          <p className="text-xl">&copy; 2024 Todojo</p>
+        </div>
+
+      </div>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer;
