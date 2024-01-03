@@ -10,6 +10,33 @@ export interface TodosState {
   loading: boolean;
 }
 
+export interface Vacancy {
+  id?: number;
+  category: string;
+  job: string;
+  city: string;
+  responsibilities: string;
+  requirements: string;
+  position?: string;
+}
+
+export interface VacanciesState {
+  vacancies: Vacancy[],
+  loading: boolean;
+}
+
+export interface Contact {
+  id?: number;
+  name: string;
+  email: string;
+  message: string;
+}
+
+export interface ContactState {
+  contacts: Contact[],
+  loading: boolean;
+}
+
 export interface NavLink {
   name: string;
   path: string;

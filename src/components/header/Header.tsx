@@ -19,7 +19,7 @@ const Header = () => {
         <Logo />
         <div className="flex gap-x-10">
         {headerNavLinks.map(link => (
-          <Link to={link.path} key={link.path}>
+          <Link to={link.path} key={link.path} className="transition-all duration-200 hover:font-bold">
             { link.name }
           </Link>
         ))}

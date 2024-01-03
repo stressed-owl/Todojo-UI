@@ -12,7 +12,7 @@ const Footer = () => {
           <hr className="border-black mt-2"/>
           <div className="flex flex-col gap-y-2 mt-6">
           {footerSocialMediaLinks.map(link => (
-            <Link to={link.path} target="true">
+            <Link to={link.path} key={link.name} target="true" className="transition-all duration-200 hover:font-bold">
                 <p className="text-[14px]">{link.name}</p>
             </Link>
           ))}
@@ -30,7 +30,7 @@ const Footer = () => {
           <Logo />
           <div className="flex gap-x-20">
             {footerMainLinks.map((link) => (
-              <Link to={link.path}>
+              <Link to={link.path} key={link.name} className="transition-all duration-200 hover:font-bold">
                 <p className="text-[15px]">{link.name}</p>
               </Link>
             ))}
