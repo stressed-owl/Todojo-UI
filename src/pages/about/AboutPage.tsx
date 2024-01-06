@@ -18,7 +18,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="mt-[250px]">
+    <div className="mt-[175px]">
       <p>&#47;&#47; About</p>
       <span className="font-bold text-[54px]" ref={aboutText}></span>
       <div>

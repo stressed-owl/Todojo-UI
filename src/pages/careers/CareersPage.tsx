@@ -27,7 +27,7 @@ const CareersPage = () => {
   }, [dispatch]);
 
   return (
-    <div className="mt-[250px]">
+    <div className="mt-[175px]">
       <p>&#47;&#47; Careers</p>
       <span className="font-bold text-[68px]" ref={careersText}></span>
       <div>

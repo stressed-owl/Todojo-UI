@@ -1,110 +1,70 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Todo } from "../../interfaces";
+import { useEffect, useRef } from "react";
+import Typed from "typed.js";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { addTodo, deleteTodo, fetchTodos } from "../../redux/todosSlice";
-import TodoCard from "./components/cards/todoCard/card/TodoCard";
-import TodoForm from "./components/form/TodoForm";
-import { descriptionExamples, taskExamples } from "../../data/Data";
-import { Search } from "@mui/icons-material";
+import { fetchTodos } from "../../redux/todosSlice";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import ChecklistIcon from "@mui/icons-material/Checklist";
+import EventRepeatIcon from "@mui/icons-material/EventRepeat";
 
 const Tasks = () => {
   const state = useAppSelector((state) => state.todos);
   const dispatch = useAppDispatch();
 
-  const [_todo, _setTodo] = useState(
-    taskExamples[Math.floor(Math.random() * taskExamples.length)]
-  );
+  const overviewText = useRef(null);
 
-  const [description, setDescription] = useState(
-    descriptionExamples[Math.floor(Math.random() * descriptionExamples.length)]
-  );
-
-  const [completeTodoState, setCompleteTodoState] = useState(false);
-
-  const [searchTaskValue, setSearchTaskValue] = useState("");
-
-  // Event handlers for task and description
-  const handleChangeTask = (event: React.ChangeEvent<HTMLInputElement>) => {
-    _setTodo(event.target.value);
-  };
-
-  const handleChangeSearchTask = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setSearchTaskValue(event.target.value);
-  };
-
-  const handleChangeDescription = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setDescription(event.target.value);
-  };
-
-  // When user hits 'Add to-do' button, input fields are cleared
-  const clearInputFields = () => {
-    _setTodo("");
-    setDescription("");
-  };
-
-  const todo: Todo = {
-    task: _todo,
-    description: description,
-    date: new Date().toLocaleDateString(),
-  };
-
-  const handleAddTodo = (todo: Todo) => {
-    if (_todo.length > 0) {
-      dispatch(addTodo(todo));
-      clearInputFields();
-    }
-  };
-
-  const handleCompleteTodo = (todo: Todo) => {
-    dispatch(deleteTodo(todo));
-    setCompleteTodoState((prevState) => !prevState);
-  };
+  const upcomingTasks = useRef(0);
+  const inProgressTasks = useRef(0);
+  const completedTasks = useRef(0);
 
   useEffect(() => {
     dispatch(fetchTodos());
-  }, [dispatch, completeTodoState]);
+
+    const typed = new Typed(overviewText.current, {
+      strings: ["Overview"],
+      typeSpeed: 50,
+      showCursor: false,
+    });
+
+    return () => {
+      typed.destroy();
+    };
+  }, [dispatch]);
 
   return (
-    <div>
-      <div className="max-w-7xl m-auto p-4">
-        <div className="flex items-center">
-          <input
-            type="text"
-            placeholder="Search task"
-            className="border-black border-[1px] w-full max-w-full p-3 rounded-[2px]"
-            value={searchTaskValue}
-            onChange={handleChangeSearchTask}
-          />
-          <button className="ml-[-50px] min-h-[48px] min-w-[48px]">
-            <Search />
-          </button>
+    <div className="mt-[175px]">
+      <p>&#47;&#47; To-dos</p>
+      <div className="flex justify-between items-center">
+        <span className="font-bold text-[68px]" ref={overviewText}></span>
+        <button className="bg-black text-white px-8 py-2 rounded-[20px] font-semibold hover:bg-[#333] transition-all duration-300">
+          Add to-do
+        </button>
+      </div>
+      <div>
+        <hr className="mt-4 border-black" />
+        <p className="mt-4 text-[13px]">
+          HAVE A BIRD'S EYE VIEW OF ALL YOUR TASKS
+        </p>
+        <hr className="mt-16 border-black" />
+      </div>
+      <div className="flex justify-between items-center mt-3">
+        <div className="flex items-center gap-x-2">
+          <ListAltIcon />
+          <span className="font-medium text-[19px]">Upcoming Tasks: </span>
+          <span className="text-[24px] font-bold">{upcomingTasks.current}</span>
         </div>
-        <div className="flex justify-center mt-8">
-          <TodoForm
-            taskValue={_todo}
-            onTaskChange={handleChangeTask}
-            onDescriptionChange={handleChangeDescription}
-            descriptionValue={description}
-            onTodoAdd={() => handleAddTodo(todo)}
-          />
+        <div className="flex items-center gap-x-2">
+          <EventRepeatIcon />
+          <span className="font-medium text-[19px]">In-Progress Tasks: </span>
+          <span className="text-[24px] font-bold">
+            {inProgressTasks.current}
+          </span>
         </div>
-        <div className="mt-6">
-          <div className="flex items-center justify-center">
-            <p className="text-[32px] font-semibold">Tasks</p>
-          </div>
-          <div className="mt-7 flex flex-wrap gap-3 justify-center">
-            {state.todos.map((todo, id) => (
-              <TodoCard
-                key={id}
-                {...todo}
-                onCompleteTodo={() => handleCompleteTodo(todo)}
-              />
-            ))}
-          </div>
+        <div className="flex items-center gap-x-2">
+          <ChecklistIcon />
+          <span className="font-medium text-[19px]">Completed Tasks: </span>
+          <span className="text-[24px] font-bold">
+            {completedTasks.current}
+          </span>
         </div>
       </div>
     </div>
