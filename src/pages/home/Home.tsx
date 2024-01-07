@@ -1,20 +1,58 @@
-import { useEffect, useRef } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import Typed from "typed.js";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { fetchTodos } from "../../redux/todosSlice";
+import { addTodo, fetchTodos } from "../../redux/todosSlice";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import EventRepeatIcon from "@mui/icons-material/EventRepeat";
+import AddTodoDialog from "./components/dialog/AddTodoDialog";
 
 const Tasks = () => {
   const state = useAppSelector((state) => state.todos);
   const dispatch = useAppDispatch();
+
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [task, setTask] = useState("");
+  const [description, setDescription] = useState("");
 
   const overviewText = useRef(null);
 
   const upcomingTasks = useRef(0);
   const inProgressTasks = useRef(0);
   const completedTasks = useRef(0);
+
+  // Handlers for opening and closing a dialog
+
+  const handleOpen = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsDialogOpen(false);
+  };
+
+  console.log('DIALOG', isDialogOpen);
+
+  // Handlers for changes in text fields
+  
+  const handleTaskChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setTask(event.target.value)
+  }
+
+  const handleDescriptionChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setDescription(event.target.value)
+  }
+
+  const handleAddTodo = () => {
+    if (task.length > 0 && description.length > 0) {
+      const todo = {
+        task: task,
+        description: description,
+        date: new Date().toLocaleDateString(),
+      };
+      dispatch(addTodo(todo));
+    }
+  };
 
   useEffect(() => {
     dispatch(fetchTodos());
@@ -35,7 +73,10 @@ const Tasks = () => {
       <p>&#47;&#47; To-dos</p>
       <div className="flex justify-between items-center">
         <span className="font-bold text-[68px]" ref={overviewText}></span>
-        <button className="bg-black text-white px-8 py-2 rounded-[20px] font-semibold hover:bg-[#333] transition-all duration-300">
+        <button
+          onClick={handleOpen}
+          className="bg-black text-white px-8 py-2 rounded-[20px] font-semibold hover:bg-[#333] transition-all duration-300"
+        >
           Add to-do
         </button>
       </div>
@@ -67,6 +108,18 @@ const Tasks = () => {
           </span>
         </div>
       </div>
+      {isDialogOpen && (
+        <AddTodoDialog
+          open={isDialogOpen}
+          task={task}
+          description={description}
+          onOpenDialog={handleOpen}
+          onCloseDialog={handleClose}
+          onAddTodo={handleAddTodo}
+          onTaskChange={handleTaskChange}
+          onDescriptionChange={handleDescriptionChange}
+        />
+      )}
     </div>
   );
 };
