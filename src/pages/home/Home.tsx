@@ -6,6 +6,7 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import ChecklistIcon from "@mui/icons-material/Checklist";
 import EventRepeatIcon from "@mui/icons-material/EventRepeat";
 import AddTodoDialog from "./components/dialog/AddTodoDialog";
+import TodoCard from "./components/cards/todoCard/card/TodoCard";
 
 const Tasks = () => {
   const state = useAppSelector((state) => state.todos);
@@ -17,9 +18,9 @@ const Tasks = () => {
 
   const overviewText = useRef(null);
 
-  const upcomingTasks = useRef(0);
-  const inProgressTasks = useRef(0);
-  const completedTasks = useRef(0);
+  const [upcomingTasks, setUpcomingTasks] = useState(state.todos.filter((todo) => todo.status === "Upcoming"));
+  const [inProgressTasks, setInProgressTasks] = useState(state.todos.filter((todo) => todo.status === "In-Progress"));
+  const [completedTasks, setCompletedTasks] = useState(state.todos.filter((todo) => todo.status === "Completed"));
 
   // Handlers for opening and closing a dialog
 
@@ -31,17 +32,15 @@ const Tasks = () => {
     setIsDialogOpen(false);
   };
 
-  console.log('DIALOG', isDialogOpen);
-
   // Handlers for changes in text fields
-  
+
   const handleTaskChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setTask(event.target.value)
-  }
+    setTask(event.target.value);
+  };
 
   const handleDescriptionChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setDescription(event.target.value)
-  }
+    setDescription(event.target.value);
+  };
 
   const handleAddTodo = () => {
     if (task.length > 0 && description.length > 0) {
@@ -50,6 +49,7 @@ const Tasks = () => {
         description: description,
         date: new Date().toLocaleDateString(),
       };
+      setIsDialogOpen(false);
       dispatch(addTodo(todo));
     }
   };
@@ -91,22 +91,32 @@ const Tasks = () => {
         <div className="flex items-center gap-x-2">
           <ListAltIcon />
           <span className="font-medium text-[19px]">Upcoming Tasks: </span>
-          <span className="text-[24px] font-bold">{upcomingTasks.current}</span>
+          <span className="text-[24px] font-bold">{upcomingTasks.length}</span>
         </div>
         <div className="flex items-center gap-x-2">
           <EventRepeatIcon />
           <span className="font-medium text-[19px]">In-Progress Tasks: </span>
           <span className="text-[24px] font-bold">
-            {inProgressTasks.current}
+            {inProgressTasks.length}
           </span>
         </div>
         <div className="flex items-center gap-x-2">
           <ChecklistIcon />
           <span className="font-medium text-[19px]">Completed Tasks: </span>
           <span className="text-[24px] font-bold">
-            {completedTasks.current}
+            {completedTasks.length}
           </span>
         </div>
+      </div>
+      <div className="mt-4 flex flex-wrap gap-x-6 justify-center">
+        {state.todos.map((todo) => (
+          <TodoCard
+            task={todo.task}
+            description={todo.description}
+            date={todo.date}
+            onCompleteTodo={() => console.log('ASDSA')}
+          />
+        ))}
       </div>
       {isDialogOpen && (
         <AddTodoDialog

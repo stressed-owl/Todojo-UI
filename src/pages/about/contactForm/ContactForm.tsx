@@ -6,6 +6,7 @@ const ContactForm = () => {
   const dispatch = useAppDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
@@ -16,6 +17,10 @@ const ContactForm = () => {
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
+
+  const handlePhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setPhone(event.target.value);
+  }
 
   const handleMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     setMessage(event.target.value);
@@ -75,6 +80,20 @@ const ContactForm = () => {
               required
               value={email}
               onChange={handleEmailChange}
+            />
+          </label>
+
+          <label htmlFor="phone" className="flex flex-col mt-6">
+            Phone
+            <input
+              className="border-black border-[1px] p-2 mt-2 rounded-md"
+              placeholder="+380441111111"
+              type="phone"
+              id="phone"
+              name="phone"
+              required
+              value={phone}
+              onChange={handlePhoneChange}
             />
           </label>
 

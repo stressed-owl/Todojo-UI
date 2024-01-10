@@ -29,17 +29,17 @@ const AddTodoDialog = ({
   onTaskChange,
   onDescriptionChange
 }: AddTodoDialogProps) => {
+  console.log(open);
   return (
     <Dialog
       open={open}
       onClick={onOpenDialog}
-      onClose={onCloseDialog}
       aria-labelledby="add-todo-dialog"
       aria-describedby="add todo dialog to add a new to-do"
       sx={{ minWidth: "480px", minHeight: "480px" }}
     >
       <DialogTitle id="alert-dialog-title" sx={{ fontFamily: "IBM Plex Mono" }}>
-        {"Add to-do"}
+        Add to-do
       </DialogTitle>
       <DialogContent>
         <div className="flex flex-col gap-y-4 mt-4">
