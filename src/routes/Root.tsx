@@ -1,10 +1,10 @@
 import Layout from "../components/common/layout/Layout";
-import Tasks from "../pages/tasks/Tasks";
+import Home from "../pages/home/Home";
 
 const Root = () => {
   return (
     <Layout>
-        <Tasks />
+        <Home />
     </Layout>
   );
 };

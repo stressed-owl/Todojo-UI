@@ -21,9 +21,9 @@ const CommunityPage = () => {
   }, []);
 
   return (
-    <div className="mt-[250px]">
+    <div className="mt-[175px]">
       <p>&#47;&#47; Social Media</p>
-      <span className="font-bold text-[54px]" ref={communityText}></span>
+      <span className="font-bold text-[68px]" ref={communityText}></span>
       <div>
         <hr className="mt-4 border-black" />
         <p className="mt-4 text-[13px]">
