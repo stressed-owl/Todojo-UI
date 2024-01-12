@@ -33,7 +33,6 @@ const AddTodoDialog = ({
   return (
     <Dialog
       open={open}
-      onClick={onOpenDialog}
       aria-labelledby="add-todo-dialog"
       aria-describedby="add todo dialog to add a new to-do"
       sx={{ minWidth: "480px", minHeight: "480px" }}
