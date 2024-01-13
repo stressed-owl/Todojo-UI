@@ -21,14 +21,16 @@ const theme = createTheme({
 });
 
 const CustomSmallButton = styled(Button)<ButtonProps>(() => ({
-  width: 100,
+  width: 150,
   padding: 5,
   color: theme.palette.primary.contrastText,
   backgroundColor: theme.palette.primary.main,
   fontFamily: "IBM Plex Mono",
   '&:hover': {
     backgroundColor: theme.palette.primary.light
-  }
+  },
+  display: "flex",
+  columnGap: 15
 }));
 
 export default function StyledCustomSmallButton({
