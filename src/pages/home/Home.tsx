@@ -1,7 +1,6 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { addTodo, fetchTodos } from "../../redux/todosSlice";
-import TodoCard from "./components/cards/todoCard/card/TodoCard";
 import AddTaskPanel from "./components/addTaskPanel/AddTaskPanel";
 
 const Tasks = () => {
