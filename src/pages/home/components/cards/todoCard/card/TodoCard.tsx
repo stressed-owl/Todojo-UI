@@ -17,7 +17,7 @@ interface TodoCardProps {
 
 const TodoCard = ({ task, date, description, onCompleteTodo }: TodoCardProps) => {
   return (
-    <Card className="mt-6 w-72 min-h-[240px] bg-black rounded-md flex flex-col justify-between p-4" placeholder={undefined}>
+    <Card className="px-4 py-2 hover:bg-[#C5C6D0] max-w-full w-full" placeholder={undefined}>
       <CardBody placeholder={undefined}>
         <Typography placeholder={undefined} color="white" className="mb-2 text-2xl font-medium">
           { date }
