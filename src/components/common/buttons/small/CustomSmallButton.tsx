@@ -36,7 +36,7 @@ const CustomSmallButton = styled(Button)<ButtonProps>(() => ({
 export default function StyledCustomSmallButton({
   id,
   onClick,
-  children,
+  children
 }: StyledSmallButtonProps) {
   return (
     <ThemeProvider theme={theme}>
