@@ -23,7 +23,7 @@ const Tasks = () => {
   };
 
   const handleAddTodo = () => {
-    if (task.length > 0 && description.length > 0) {
+    if (task.length > 0) {
       const todo = {
         task: task,
         description: description,
