@@ -62,6 +62,7 @@ const Tasks = () => {
             description={todo.description}
             date={todo.date}
             onCompleteTodo={() => handleDeleteTodo(todo)}
+            key={todo.id}
           />
         ))}
       </div>
