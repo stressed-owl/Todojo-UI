@@ -1,13 +1,8 @@
 import { useEffect, useRef } from "react";
 import Typed from "typed.js";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { fetchVacancies } from "../../redux/vacancySlice";
 import VacancyInfo from "./vacancyInfo/VacancyInfo";
 
 const CareersPage = () => {
-  const state = useAppSelector((state) => state.vacancies);
-  const dispatch = useAppDispatch();
-
   const careersText = useRef(null);
 
   const displayedCategories = new Set();
@@ -19,12 +14,10 @@ const CareersPage = () => {
       showCursor: false,
     });
 
-    dispatch(fetchVacancies());
-
     return () => {
       typed.destroy();
     };
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="mt-[175px]">
@@ -42,7 +35,7 @@ const CareersPage = () => {
       <div className="mt-20">
         <hr className="mt-4 border-black" />
         <div className="mt-2">
-          {state.vacancies.map((vacancy) => {
+          {/* {state.vacancies.map((vacancy) => {
             if (!displayedCategories.has(vacancy.category)) {
               displayedCategories.add(vacancy.category);
               return (
@@ -62,7 +55,7 @@ const CareersPage = () => {
                 <VacancyInfo key={vacancy.id} vacancy={vacancy} />
               ) 
             }
-          })}
+          })} */}
         </div>
       </div>
     </div>

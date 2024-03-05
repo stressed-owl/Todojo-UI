@@ -1,19 +1,13 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import todosSlice from "./todosSlice";
-import vacanciesSlice from "./vacancySlice";
-import contactSlice from "./contactSlice";
+import { configureStore } from '@reduxjs/toolkit'
+import { setupListeners } from '@reduxjs/toolkit/query/react'
+import { todoAPI } from '../services/todo'
 
-const rootReducer = combineReducers({
-  todos: todosSlice,
-  vacancies: vacanciesSlice,
-  contact: contactSlice
-});
+export const store = configureStore({
+  reducer: {
+    [todoAPI.reducerPath]: todoAPI.reducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(todoAPI.middleware),
+})
 
-const store = configureStore({
-  reducer: rootReducer,
-});
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
-
-export default store;
+setupListeners(store.dispatch)

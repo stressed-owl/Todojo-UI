@@ -1,9 +1,6 @@
 import { ChangeEvent, useState } from "react";
-import { useAppDispatch } from "../../../redux/hooks";
-import { createContact } from "../../../redux/contactSlice";
 
 const ContactForm = () => {
-  const dispatch = useAppDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -39,7 +36,6 @@ const ContactForm = () => {
         email: email,
         message: message,
       };
-      dispatch(createContact(data));
       setIsFormSubmitted(true);
       setTimeout(() => {
         clearInputFields();

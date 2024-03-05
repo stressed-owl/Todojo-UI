@@ -2,11 +2,11 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Root from "./routes/Root";
 import { Provider } from "react-redux";
-import store from "./redux/configureStore";
 import ErrorPage from "./pages/error/Error";
 import About from "./routes/About";
 import Community from "./routes/Community";
 import Careers from "./routes/Careers";
+import { store } from "./redux/configureStore";
 
 const router = createBrowserRouter([
   {

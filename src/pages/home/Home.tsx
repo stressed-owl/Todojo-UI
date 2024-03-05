@@ -1,18 +1,15 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { addTodo, fetchTodos, deleteTodo } from "../../redux/todosSlice";
+import { ChangeEvent, useState } from "react";
 import TodoCard from "./components/cards/todoCard/TodoCard";
 import AddTodo from "./components/addTodo/AddTodo";
+import { useGetTodosQuery } from "../../services/todo";
+import { Todo } from "../../interfaces";
 
 const Tasks = () => {
-  const state = useAppSelector((state) => state.todos);
-  const dispatch = useAppDispatch();
+  const { data, isLoading } = useGetTodosQuery();
 
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
   const [isDeleteTodo, setIsDeleteTodo] = useState(false);
-
-  // Handlers for changes in text fields
 
   const handleTaskChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTask(event.target.value);
@@ -29,20 +26,17 @@ const Tasks = () => {
         description: description,
         date: new Date().toLocaleDateString(),
       };
-      dispatch(addTodo(todo));
     }
     setTask("");
     setDescription("");
   };
 
   const handleDeleteTodo = (todo: any) => {
-    dispatch(deleteTodo(todo))
     setIsDeleteTodo(prevState => !prevState);
   }
 
-  useEffect(() => {
-    dispatch(fetchTodos());
-  }, [dispatch, isDeleteTodo]);
+  console.log('TODOS', data);
+  
 
   return (
     <div className="mt-[150px]">
@@ -56,7 +50,7 @@ const Tasks = () => {
           />
       </div>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        {state.todos.map((todo) => (
+        {/* {todos.map((todo: Todo) => (
           <TodoCard
             task={todo.task}
             description={todo.description}
@@ -64,7 +58,7 @@ const Tasks = () => {
             onCompleteTodo={() => handleDeleteTodo(todo)}
             key={todo.id}
           />
-        ))}
+        ))} */}
       </div>
     </div>
   );
