@@ -1,10 +1,12 @@
 import { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import VacancyInfo from "./vacancyInfo/VacancyInfo";
+import { useGetVacanciesQuery } from "../../services/todo";
+import { Vacancy } from "../../interfaces";
 
 const CareersPage = () => {
+  const { data, isLoading } = useGetVacanciesQuery();
   const careersText = useRef(null);
-
   const displayedCategories = new Set();
 
   useEffect(() => {
@@ -35,27 +37,29 @@ const CareersPage = () => {
       <div className="mt-20">
         <hr className="mt-4 border-black" />
         <div className="mt-2">
-          {/* {state.vacancies.map((vacancy) => {
-            if (!displayedCategories.has(vacancy.category)) {
-              displayedCategories.add(vacancy.category);
-              return (
-                <div key={vacancy.category}>
-                  <div className="flex gap-x-4 items-center mb-3">
-                    <p>&#123;  {vacancy.position}	&#125;</p>
-                    <h2 className="font-bold text-[36px]">
-                      {vacancy.category.toUpperCase()}
-                    </h2>
+          {isLoading ? (
+            <p className="text-3xl">Loading...</p>
+          ) : (
+            data?.map((vacancy: Vacancy) => {
+              if (!displayedCategories.has(vacancy.category)) {
+                displayedCategories.add(vacancy.category);
+                return (
+                  <div key={vacancy.category}>
+                    <div className="flex gap-x-4 items-center mb-3">
+                      <p>&#123; {vacancy.position} &#125;</p>
+                      <h2 className="font-bold text-[36px]">
+                        {vacancy.category.toUpperCase()}
+                      </h2>
+                    </div>
+                    <hr className="mb-6 border-black" />
+                    <VacancyInfo vacancy={vacancy} />
                   </div>
-                  <hr className="mb-6 border-black" />
-                  <VacancyInfo vacancy={vacancy} />
-                </div>
-              );
-            } else {
-              return (
-                <VacancyInfo key={vacancy.id} vacancy={vacancy} />
-              ) 
-            }
-          })} */}
+                );
+              } else {
+                return <VacancyInfo key={vacancy.id} vacancy={vacancy} />;
+              }
+            })
+          )}
         </div>
       </div>
     </div>

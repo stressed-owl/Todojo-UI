@@ -1,14 +1,17 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import TodoCard from "./components/cards/todoCard/TodoCard";
 import AddTodo from "./components/addTodo/AddTodo";
-import { useGetTodosQuery } from "../../services/todo";
+import { useCreateTodoMutation, useDeleteTodoMutation, useGetTodosQuery } from "../../services/todo";
 import { Todo } from "../../interfaces";
 
 const Tasks = () => {
-  const { data, isLoading } = useGetTodosQuery();
+  const { data, refetch, isLoading } = useGetTodosQuery();
+  const [createTodo] = useCreateTodoMutation();
+  const [deleteTodo] = useDeleteTodoMutation();
 
   const [task, setTask] = useState("");
   const [description, setDescription] = useState("");
+  const [isCreateTodo, setIsCreateTodo] = useState(false);
   const [isDeleteTodo, setIsDeleteTodo] = useState(false);
 
   const handleTaskChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -26,17 +29,21 @@ const Tasks = () => {
         description: description,
         date: new Date().toLocaleDateString(),
       };
+      createTodo(todo);
+      setIsCreateTodo(prevState => !prevState);
     }
     setTask("");
     setDescription("");
   };
 
-  const handleDeleteTodo = (todo: any) => {
+  const handleDeleteTodo = (todo: Todo) => {
+    deleteTodo(todo.id);
     setIsDeleteTodo(prevState => !prevState);
-  }
+  };
 
-  console.log('TODOS', data);
-  
+  useEffect(() => {
+    refetch();
+  }, [data, refetch, isCreateTodo, isDeleteTodo]);
 
   return (
     <div className="mt-[150px]">
@@ -44,21 +51,25 @@ const Tasks = () => {
         <AddTodo
           onAddTodo={handleAddTodo}
           onTaskChange={handleTaskChange}
-          onDescriptionChange={handleDescriptionChange} 
-          task={task} 
-          description={description} 
-          />
+          onDescriptionChange={handleDescriptionChange}
+          task={task}
+          description={description}
+        />
       </div>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        {/* {todos.map((todo: Todo) => (
-          <TodoCard
-            task={todo.task}
-            description={todo.description}
-            date={todo.date}
-            onCompleteTodo={() => handleDeleteTodo(todo)}
-            key={todo.id}
-          />
-        ))} */}
+        {isLoading ? (
+          <p className="text-3xl">Loading...</p>
+        ) : (
+          data?.map((todo: Todo) => (
+            <TodoCard
+              task={todo.task}
+              description={todo.description}
+              date={todo.date}
+              onCompleteTodo={() => handleDeleteTodo(todo)}
+              key={todo.id}
+            />
+          ))
+        )}
       </div>
     </div>
   );

@@ -1,41 +1,56 @@
 import { ChangeEvent, useState } from "react";
+import { useCreateContactMutation } from "../../../services/todo";
 
 const ContactForm = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [message, setMessage] = useState("");
+  const [userData, setUserData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
+  const [createContact] = useCreateContactMutation();
+
   const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setName(event.target.value);
+    setUserData((prev) => ({ ...prev, name: event.target.value }));
   };
 
   const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
+    setUserData((prev) => ({ ...prev, email: event.target.value }));
   };
 
   const handlePhoneChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPhone(event.target.value);
-  }
+    setUserData((prev) => ({ ...prev, phone: event.target.value }));
+  };
 
   const handleMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setMessage(event.target.value);
+    setUserData((prev) => ({ ...prev, message: event.target.value }));
   };
 
   const clearInputFields = () => {
-    setName("");
-    setEmail("");
-    setMessage("");
+    setUserData(() => {
+      return {
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+      };
+    });
   };
 
   const submit = () => {
-    if (name.length > 0 && email.length > 0 && message.length > 0) {
+    if (
+      userData.name.length > 0 &&
+      userData.email.length > 0 &&
+      userData.message.length > 0
+    ) {
       const data = {
-        name: name,
-        email: email,
-        message: message,
+        name: userData.name,
+        email: userData.email,
+        message: userData.message,
       };
+      createContact(data);
       setIsFormSubmitted(true);
       setTimeout(() => {
         clearInputFields();
@@ -60,7 +75,7 @@ const ContactForm = () => {
               id="name"
               name="name"
               required
-              value={name}
+              value={userData.name}
               onChange={handleNameChange}
             />
           </label>
@@ -74,7 +89,7 @@ const ContactForm = () => {
               id="email"
               name="email"
               required
-              value={email}
+              value={userData.email}
               onChange={handleEmailChange}
             />
           </label>
@@ -88,7 +103,7 @@ const ContactForm = () => {
               id="phone"
               name="phone"
               required
-              value={phone}
+              value={userData.phone}
               onChange={handlePhoneChange}
             />
           </label>
@@ -103,7 +118,7 @@ const ContactForm = () => {
               required
               maxLength={300}
               placeholder="It's tough to imagine my life without Todojo..."
-              value={message}
+              value={userData.message}
               onChange={handleMessageChange}
             ></textarea>
           </label>

@@ -17,7 +17,7 @@ export const todoAPI = createApi({
             body
         })
     }),
-    deleteTodo: builder.mutation<{ success: Boolean, id: number }, number>({
+    deleteTodo: builder.mutation<{ success: Boolean, id: number }, number | undefined>({
         query(id) {
             return {
                 url: `todos/${id}`,
@@ -32,10 +32,10 @@ export const todoAPI = createApi({
             body
         })
     }),
-    getVacancies: builder.query<Vacancy, Partial<Vacancy>>({
+    getVacancies: builder.query<Vacancy[], void>({
         query: () => 'vacancy'
     })
   }),
 })
 
-export const { useGetTodosQuery, useCreateTodoMutation, useDeleteTodoMutation } = todoAPI
+export const { useGetTodosQuery, useCreateTodoMutation, useDeleteTodoMutation, useCreateContactMutation, useGetVacanciesQuery } = todoAPI
