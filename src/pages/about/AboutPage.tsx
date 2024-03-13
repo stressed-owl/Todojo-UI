@@ -20,7 +20,7 @@ const About = () => {
   return (
     <div className="mt-[175px]">
       <p>&#47;&#47; About</p>
-      <span className="font-bold text-[54px]" ref={aboutText}></span>
+      <span className="font-bold text-[54px] lg:text-[36px]" ref={aboutText}></span>
       <div>
         <hr className="mt-4 border-black" />
         <p className="mt-4 text-[13px]">
