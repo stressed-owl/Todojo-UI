@@ -10,7 +10,7 @@ const Layout = ({ children }: LayoutProps) => {
   return (
     <div>
         <Header />
-        <div className="min-h-[100vh] max-w-[1500px] m-auto mt-[150px] z-10">
+        <div className="min-h-[100vh] max-w-[1500px] m-auto mt-[150px] z-10 2xl:mx-9">
           { children }
         </div>
         <Footer />
