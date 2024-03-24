@@ -8,6 +8,7 @@ interface AddTodoProps {
   description: string;
   onTaskChange: React.ChangeEventHandler<HTMLInputElement>;
   onDescriptionChange: React.ChangeEventHandler<HTMLInputElement>;
+  className?: string;
 }
 
 const AddTodo = (props: AddTodoProps) => {

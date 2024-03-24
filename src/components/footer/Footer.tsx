@@ -8,34 +8,34 @@ const Footer = () => {
       <div className="max-w-[1600px] m-auto p-8">
 
         <div>
-          <h3 className="font-bold">SOCIAL MEDIA</h3>
+          <h3 className="font-bold sm:text-[14px]">SOCIAL MEDIA</h3>
           <hr className="border-black mt-2"/>
           <div className="flex flex-col gap-y-2 mt-6">
           {footerSocialMediaLinks.map(link => (
             <Link to={link.path} key={link.name} target="true" className="transition-all duration-200 hover:font-bold">
-                <p className="text-[14px]">{link.name}</p>
+                <p className="text-[14px] sm:text-[12px]">{link.name}</p>
             </Link>
           ))}
           </div>
         </div>
 
         <blockquote className="flex items-center justify-center">
-          <div className="italic mt-5">
+          <div className="italic mt-5 sm:text-[14px]">
             <p>There's no light without dark.</p>
             <p className="flex items-center justify-center">There's no joy without pain.</p>
           </div>
         </blockquote>
 
-        <div className="flex items-center justify-between mt-10">
+        <div className="flex items-center justify-between mt-10 sm:flex-col sm:items-start sm:gap-5">
           <Logo />
-          <div className="flex gap-x-20 lg:hidden">
+          <div className="flex gap-x-20 sm:flex-col sm:gap-2">
             {footerMainLinks.map((link) => (
               <Link to={link.path} key={link.name} className="transition-all duration-200 hover:font-bold">
                 <p className="text-[15px]">{link.name}</p>
               </Link>
             ))}
           </div>
-          <p className="text-xl lg:hidden">&copy; 2024 Todojo</p>
+          <p className="text-xl lg:hidden sm:block">&copy; 2024 Todojo</p>
         </div>
 
       </div>

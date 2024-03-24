@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import Typed from "typed.js";
 import ContactForm from "./contactForm/ContactForm";
 
@@ -8,7 +8,7 @@ const About = () => {
   useEffect(() => {
     const typed = new Typed(aboutText.current, {
       strings: ["About Todojo"],
-      typeSpeed: 50,
+      typeSpeed: 60,
       showCursor: false,
     });
 
@@ -18,7 +18,7 @@ const About = () => {
   }, []);
 
   return (
-    <div className="mt-[175px]">
+    <div className="mt-[175px] sm:text-center">
       <p>&#47;&#47; About</p>
       <span className="font-bold text-[54px] lg:text-[36px]" ref={aboutText}></span>
       <div>
@@ -44,7 +44,7 @@ const About = () => {
 
         <hr className="mt-16 border-black" />
 
-        <article className="mt-6 flex flex-col items-end">
+        <article className="mt-6 flex flex-col items-end sm:items-center">
           <span className="font-semibold text-[36px]">What is Todojo?</span>
           <section className="mt-2">
             <p className="max-w-[800px] text-justify">
@@ -63,7 +63,7 @@ const About = () => {
         <article className="mt-6">
           <span className="font-semibold text-[36px]">Key Features</span>
           <section className="mt-2">
-            <ul className="flex flex-col gap-y-4 max-w-[700px] list-disc list-inside">
+            <ul className="flex flex-col gap-y-4 max-w-[700px] list-disc list-inside sm:list-none sm:text-center">
               <li className="text-justify">
                 Intuitive Interface: Todojo boasts a clean and intuitive design,
                 making it easy for users of all levels to navigate and use the

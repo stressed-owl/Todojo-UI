@@ -4,11 +4,12 @@ import { ThemeProvider, styled } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 
 interface StyledTextFieldProps {
-    id: string;
-    label: string;
-    helperText: string;
-    value: string;
-    onChange: React.ChangeEventHandler;
+  id: string;
+  label: string;
+  helperText: string;
+  value: string;
+  onChange: React.ChangeEventHandler;
+  className?: string;
 }
 
 const theme = createTheme({
@@ -23,15 +24,28 @@ const theme = createTheme({
 });
 
 const CustomTextField = styled(TextField)<TextFieldProps>(() => ({
-  width: 350,
   color: theme.palette.success.main,
-  fontFamily: 'IBM Plex Mono',
+  fontFamily: "IBM Plex Mono",
 }));
 
-export default function StyledCustomTextField({ id, label, helperText, value, onChange }: StyledTextFieldProps) {
+export default function StyledCustomTextField({
+  id,
+  label,
+  helperText,
+  value,
+  onChange,
+  className,
+}: StyledTextFieldProps) {
   return (
     <ThemeProvider theme={theme}>
-      <CustomTextField id={id} label={label} helperText={helperText} value={value} onChange={onChange}/>
+      <CustomTextField
+        id={id}
+        label={label}
+        helperText={helperText}
+        value={value}
+        onChange={onChange}
+        className={className}
+      />
     </ThemeProvider>
   );
 }

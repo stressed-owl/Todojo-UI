@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { headerNavLinks } from "../../data/Data";
+import { headerNavLinksDesktop } from "../../data/Data";
 import "../../todojo.css";
 import Logo from "../common/logo/Logo";
 import Modal from "./modal/Modal";
@@ -17,7 +17,7 @@ const Header = () => {
         <Logo />
         <BurgerMenu isMenuOpen={isMenuOpen} setIsMenuOpen={handleMenuClick}/>
         <div className="flex gap-x-10 lg:hidden">
-          {headerNavLinks.map((link) => (
+          {headerNavLinksDesktop.map((link) => (
             <Link
               to={link.path}
               key={link.path}

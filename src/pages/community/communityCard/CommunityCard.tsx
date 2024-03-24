@@ -8,13 +8,13 @@ interface CommunityCardProps {
 
 const CommunityCard = ({ link }: CommunityCardProps) => {
   return (
-    <div className="max-w-[683px] w-full h-[342px] h-full border-[1px] border-black rounded-[2px]">
+    <div className="max-w-[683px] w-full max-h-[342px] h-full border-[1px] border-black rounded-[2px]">
       <div className="px-6 py-4 min-h-[100%]">
         <div className="flex flex-col justify-between h-[300px]">
           <div className="flex items-center justify-between">
             <div>
               <span className="text-[13px] text-black">&#47; {link.id}</span>
-              <p className="mt-1 font-medium text-[26px] text-black">
+              <p className="mt-1 font-medium text-[26px] text-black sm:text-[18px]">
                 {link.name}
               </p>
             </div>

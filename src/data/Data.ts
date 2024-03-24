@@ -4,7 +4,7 @@ import discordIcon from "../assets/icons/discord.png";
 import githubIcon from "../assets/icons/github.png";
 import twitterIcon from "../assets/icons/twitter.png";
 
-export const headerNavLinks: NavLink[] = [
+export const headerNavLinksDesktop: NavLink[] = [
   {
     name: "<A/> OVERVIEW",
     path: "/overview"
@@ -19,6 +19,25 @@ export const headerNavLinks: NavLink[] = [
   },
   {
     name: "<A/> COMMUNITY",
+    path: "/community"
+  },
+]
+
+export const headerNavLinksMobile: NavLink[] = [
+  {
+    name: "Overview",
+    path: "/overview"
+  },
+  {
+    name: "About",
+    path: "/about"
+  },
+  {
+    name: "Careers",
+    path: "/careers"
+  },
+  {
+    name: "Community",
     path: "/community"
   },
 ]
@@ -74,7 +93,7 @@ export const communityNavLinks: ExtendedNavLink[] = [
   },
   {
     id: "03",
-    name: "X (Previously Twitter)",
+    name: "X",
     path: "https://twitter.com/home",
     icon: twitterIcon,
     linkText: "FOLLOW US ON X"
