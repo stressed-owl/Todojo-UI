@@ -26,6 +26,7 @@ const CustomSmallButton = styled(Button)<ButtonProps>(() => ({
   color: theme.palette.primary.contrastText,
   backgroundColor: theme.palette.primary.main,
   fontFamily: "IBM Plex Mono",
+  fontWeight: 600,
   '&:hover': {
     backgroundColor: theme.palette.primary.light
   },

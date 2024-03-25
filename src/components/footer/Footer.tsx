@@ -28,14 +28,14 @@ const Footer = () => {
 
         <div className="flex items-center justify-between mt-10 sm:flex-col sm:items-start sm:gap-5">
           <Logo />
-          <div className="flex gap-x-20 sm:flex-col sm:gap-2">
+          <div className="flex gap-x-20 lg:gap-x-3 sm:flex-col sm:gap-2">
             {footerMainLinks.map((link) => (
               <Link to={link.path} key={link.name} className="transition-all duration-200 hover:font-bold">
                 <p className="text-[15px]">{link.name}</p>
               </Link>
             ))}
           </div>
-          <p className="text-xl lg:hidden sm:block">&copy; 2024 Todojo</p>
+          <p className="text-xl">&copy; 2024 Todojo</p>
         </div>
 
       </div>

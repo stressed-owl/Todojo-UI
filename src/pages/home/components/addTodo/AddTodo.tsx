@@ -13,14 +13,16 @@ interface AddTodoProps {
 
 const AddTodo = (props: AddTodoProps) => {
   return (
-    <div className="mt-7">
-      <div className="flex flex-col gap-y-4">
+    <div className="mt-7 max-w-[400px] w-full">
+      <div className="flex flex-col gap-y-4 !w-[100%]">
         <TextField
           id={"todo-text-field"}
           label={"To-do"}
           helperText={"Add your to-do here"}
           value={props.task}
           onChange={props.onTaskChange}
+          width="100%"
+          maxWidth="450px"
         />
         <TextField
           id={"description-text-field"}
@@ -28,6 +30,8 @@ const AddTodo = (props: AddTodoProps) => {
           helperText={"Add your description here"}
           value={props.description}
           onChange={props.onDescriptionChange}
+          width="100%"
+          maxWidth="450px"
         />
       </div>
       <div className="mt-5 flex justify-center">
