@@ -20,7 +20,7 @@ const About = () => {
   return (
     <div className="mt-[175px] sm:text-center">
       <p>&#47;&#47; About</p>
-      <span className="font-bold text-[54px] lg:text-[36px]" ref={aboutText}></span>
+      <span className="font-bold text-[54px] lg:text-[26px]" ref={aboutText}></span>
       <div>
         <hr className="mt-4 border-black" />
         <p className="mt-4 text-[13px]">
@@ -30,9 +30,9 @@ const About = () => {
       </div>
       <div className="mt-6">
         <article>
-          <span className="font-semibold text-[36px]">Our Mission</span>
+          <span className="font-semibold text-[36px] lg:text-[26px]">Our Mission</span>
           <section className="mt-2">
-            <p className="max-w-[800px] text-justify">
+            <p className="max-w-[800px] text-justify lg:text-[14px]">
               Welcome to Todojo, where simplicity meets productivity! Our
               mission is to empower individuals and teams to achieve their goals
               and manage their tasks efficiently. We understand the importance
@@ -45,9 +45,9 @@ const About = () => {
         <hr className="mt-16 border-black" />
 
         <article className="mt-6 flex flex-col items-end sm:items-center">
-          <span className="font-semibold text-[36px]">What is Todojo?</span>
+          <span className="font-semibold text-[36px] lg:text-[26px]">What is Todojo?</span>
           <section className="mt-2">
-            <p className="max-w-[800px] text-justify">
+            <p className="max-w-[800px] text-justify lg:text-[14px]">
               Todojo is a versatile and user-friendly task management
               application designed to enhance your productivity and simplify
               your life. Whether you're a busy professional, a student juggling
@@ -61,8 +61,8 @@ const About = () => {
         <hr className="mt-16 border-black" />
 
         <article className="mt-6">
-          <span className="font-semibold text-[36px]">Key Features</span>
-          <section className="mt-2">
+          <span className="font-semibold text-[36px] lg:text-[26px]">Key Features</span>
+          <section className="mt-2 lg:text-[14px]">
             <ul className="flex flex-col gap-y-4 max-w-[700px] list-disc list-inside sm:list-none sm:text-center">
               <li className="text-justify">
                 Intuitive Interface: Todojo boasts a clean and intuitive design,
@@ -96,17 +96,17 @@ const About = () => {
         <hr className="mt-16 border-black" />
 
         <article className="mt-6 flex flex-col items-center">
-          <span className="font-semibold text-[36px]">Our Team</span>
+          <span className="font-semibold text-[36px] lg:text-[26px]">Our Team</span>
           <section className="max-w-[800px] flex flex-col mt-2">
-            <p className="text-center">
+            <p className="text-center lg:text-[14px]">
               Todojo was developed by a passionate team of individuals who
               believe in the power of organization and productivity. Meet the
               minds behind the app:
             </p>
             <div className="mt-[100px]">
               <div className="flex flex-col items-center">
-                <span className="font-semibold text-xl">Nikolay Ponomarenko</span>
-                <p className="mt-2 text-center mt-4">
+                <span className="font-semibold text-xl lg:text-[18px]">Nikolay Ponomarenko</span>
+                <p className="mt-2 text-center mt-4 lg:text-[15px]">
                   Nikolay is the visionary behind Todojo, bringing his extensive
                   experience in development and business to the table. Nikolay
                   envisioned a tool that would not only simplify task management
@@ -114,8 +114,8 @@ const About = () => {
                 </p>
               </div>
               <div className="flex flex-col items-center mt-7">
-                <span className="font-semibold text-xl">Marina Koval</span>
-                <p className="mt-2 text-center mt-4">
+                <span className="font-semibold text-xl lg:text-[18px]">Marina Koval</span>
+                <p className="mt-2 text-center mt-4 lg:text-[15px]">
                   As the Lead Developer of Todojo, Marina is the technical
                   genius responsible for translating ideas into reality. With a
                   background in Full Stack development, she has played a pivotal
@@ -124,8 +124,8 @@ const About = () => {
                 </p>
               </div>
               <div className="flex flex-col items-center mt-7">
-                <span className="font-semibold text-xl">Nikki Avery</span>
-                <p className="mt-2 text-center mt-4">
+                <span className="font-semibold text-xl lg:text-[18px]">Nikki Avery</span>
+                <p className="mt-2 text-center mt-4 lg:text-[15px]">
                   The creative force shaping Todojo's aesthetic appeal is none
                   other than Nikki. Nikki brings a keen eye for design and a
                   passion for user experience to the team. Through thoughtful
@@ -140,8 +140,8 @@ const About = () => {
         <hr className="mt-16 border-black" />
 
         <article className="mt-6 flex flex-col items-center text-center">
-          <span className="font-semibold text-[36px]">Contact Us</span>
-          <section className="max-w-[800px] mt-2">
+          <span className="font-semibold text-[36px] lg:text-[26px]">Contact Us</span>
+          <section className="max-w-[800px] mt-2 lg:text-[14px]">
             <p className="text-center">
               Have questions, feedback, or suggestions? We'd love to hear from
               you! Reach out to us at{" "}
