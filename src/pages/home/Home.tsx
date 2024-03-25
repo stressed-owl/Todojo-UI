@@ -1,8 +1,13 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import TodoCard from "./components/cards/todoCard/TodoCard";
 import AddTodo from "./components/addTodo/AddTodo";
-import { useCreateTodoMutation, useDeleteTodoMutation, useGetTodosQuery } from "../../services/todo";
+import {
+  useCreateTodoMutation,
+  useDeleteTodoMutation,
+  useGetTodosQuery,
+} from "../../services/todo";
 import { Todo } from "../../interfaces";
+import { months } from "../../data/Data";
 
 const Tasks = () => {
   const { data, refetch, isLoading } = useGetTodosQuery();
@@ -14,6 +19,8 @@ const Tasks = () => {
   const [isCreateTodo, setIsCreateTodo] = useState(false);
   const [isDeleteTodo, setIsDeleteTodo] = useState(false);
 
+  const date = new Date();
+
   const handleTaskChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTask(event.target.value);
   };
@@ -22,15 +29,33 @@ const Tasks = () => {
     setDescription(event.target.value);
   };
 
+  const formatTime = (date: Date) => {
+    const day = date.getDate();
+    const monthIndex = date.getMonth();
+    const month = months[monthIndex];
+    let hour = date.getHours();
+    const minute = date.getMinutes();
+
+    const ampm = hour >= 12 ? "PM" : "AM";
+    hour = hour % 12;
+    hour = hour ? hour : 12;
+
+    const formattedTime = `${day} ${month} ${hour}:${
+      minute < 10 ? "0" + minute : minute
+    } ${ampm}`;
+
+    return formattedTime;
+  };
+
   const handleAddTodo = () => {
     if (task.length > 0) {
       const todo = {
         task: task,
         description: description,
-        date: new Date().toLocaleDateString(),
+        date: formatTime(date),
       };
       createTodo(todo);
-      setIsCreateTodo(prevState => !prevState);
+      setIsCreateTodo((prevState) => !prevState);
     }
     setTask("");
     setDescription("");
@@ -38,7 +63,7 @@ const Tasks = () => {
 
   const handleDeleteTodo = (todo: Todo) => {
     deleteTodo(todo.id);
-    setIsDeleteTodo(prevState => !prevState);
+    setIsDeleteTodo((prevState) => !prevState);
   };
 
   useEffect(() => {
@@ -63,7 +88,6 @@ const Tasks = () => {
           data?.map((todo: Todo) => (
             <TodoCard
               task={todo.task}
-              description={todo.description}
               date={todo.date}
               onCompleteTodo={() => handleDeleteTodo(todo)}
               key={todo.id}

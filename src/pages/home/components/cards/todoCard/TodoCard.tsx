@@ -6,6 +6,7 @@ import {
   Typography,
 } from "@material-tailwind/react";
 import DoneIcon from "@mui/icons-material/Done";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { Box } from "@mui/material";
 
 interface TodoCardProps {
@@ -15,46 +16,55 @@ interface TodoCardProps {
   onCompleteTodo: React.MouseEventHandler;
 }
 
-const TodoCard = ({
-  task,
-  date,
-  description,
-  onCompleteTodo,
-}: TodoCardProps) => {
+const TodoCard = ({ task, date, onCompleteTodo }: TodoCardProps) => {
   return (
     <Card
-      className="px-5 py-4 bg-black transition duration-500 hover:bg-[#111111] w-full max-w-[300px]"
+      className="px-5 py-4 bg-[#111] w-full max-w-[575px] min-h-[320px]"
       placeholder={undefined}
     >
-      <CardBody placeholder={undefined}>
+      <CardBody placeholder={undefined} className="h-full">
         <Box
           sx={{
             display: "flex",
-            alignItems: 'center',
-            justifyContent: 'space-between'
+            flexDirection: 'column',
+            justifyContent: "space-between",
+            height: '100%',
           }}
         >
+          <Box sx={{
+            backgroundColor: '#fff',
+            width: '100%',
+            maxWidth: '90px',
+            display: 'flex',
+            justifyContent: 'center',
+            padding: '8px 6px',
+            borderRadius: 10
+          }}>
+            <Typography placeholder={undefined} className="text-[14px] font-bold">
+              High
+            </Typography>
+          </Box>
           <Box>
             <Typography
               placeholder={undefined}
-              color="white"
-              className="mb-2 text-2xl font-medium"
-            >
-              {date}
-            </Typography>
-            <Typography
-              placeholder={undefined}
-              className="text-[18px] font-bold text-white"
+              className="text-[28px] font-bold text-white"
             >
               {task}
             </Typography>
-            <Typography
-              placeholder={undefined}
-              className="text-[15px] text-white mt-2"
-            >
-              {description}
-            </Typography>
           </Box>
+          <Box sx={{
+              display: 'flex',
+              alignItems: 'center',
+              columnGap: 1
+            }}>
+              <CalendarTodayIcon className="text-white"/>
+              <Typography
+                placeholder={undefined}
+                className="text-[14px] font-bold text-white"
+              >
+                {date}
+              </Typography>
+            </Box>
           <Box>
             <Tooltip
               animate={{
