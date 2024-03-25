@@ -1,15 +1,7 @@
 import * as React from "react";
-import TextField, { TextFieldProps } from "@mui/material/TextField";
+import TextField from "@mui/material/TextField";
 import { ThemeProvider, styled } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
-
-interface StyledTextFieldProps {
-    id: string;
-    label: string;
-    helperText: string;
-    value: string;
-    onChange: React.ChangeEventHandler;
-}
 
 const theme = createTheme({
   palette: {
@@ -22,16 +14,53 @@ const theme = createTheme({
   },
 });
 
-const CustomTextField = styled(TextField)<TextFieldProps>(() => ({
-  width: 350,
-  color: theme.palette.success.main,
-  fontFamily: 'IBM Plex Mono',
-}));
+interface StyledTextFieldProps {
+  id: string;
+  label: string;
+  helperText: string;
+  value: string;
+  onChange: React.ChangeEventHandler;
+  className?: string;
+  width: string;
+  maxWidth: string;
+}
 
-export default function StyledCustomTextField({ id, label, helperText, value, onChange }: StyledTextFieldProps) {
+type CustomTextFieldProps = {
+  width: string;
+  maxWidth: string;
+};
+
+const CustomTextField = styled(TextField)<CustomTextFieldProps>(
+  ({ width, maxWidth }) => ({
+    width: width,
+    maxWidth: maxWidth,
+    color: theme.palette.success.main,
+    fontFamily: "IBM Plex Mono",
+  })
+);
+
+export default function StyledCustomTextField({
+  id,
+  label,
+  helperText,
+  value,
+  onChange,
+  className,
+  width,
+  maxWidth,
+}: StyledTextFieldProps) {
   return (
     <ThemeProvider theme={theme}>
-      <CustomTextField id={id} label={label} helperText={helperText} value={value} onChange={onChange}/>
+      <CustomTextField
+        id={id}
+        label={label}
+        helperText={helperText}
+        value={value}
+        onChange={onChange}
+        className={className}
+        width={width}
+        maxWidth={maxWidth}
+      />
     </ThemeProvider>
   );
 }

@@ -22,7 +22,7 @@ const CareersPage = () => {
   }, []);
 
   return (
-    <div className="mt-[175px]">
+    <div className="mt-[175px] sm:text-center">
       <p>&#47;&#47; Careers</p>
       <span className="font-bold text-[68px] lg:text-[36px]" ref={careersText}></span>
       <div>
@@ -45,7 +45,7 @@ const CareersPage = () => {
                 displayedCategories.add(vacancy.category);
                 return (
                   <div key={vacancy.category}>
-                    <div className="flex gap-x-4 items-center mb-3">
+                    <div className="flex gap-x-4 items-center mb-3 sm:flex-col">
                       <p>&#123; {vacancy.position} &#125;</p>
                       <h2 className="font-bold text-[36px]">
                         {vacancy.category.toUpperCase()}

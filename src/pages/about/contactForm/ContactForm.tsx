@@ -64,12 +64,12 @@ const ContactForm = () => {
       {!isFormSubmitted && (
         <form
           action="/contact"
-          className="flex flex-col mt-10 max-w-[425px] m-auto"
+          className="flex flex-col mt-10 max-w-[425px] m-auto sm:text-start"
         >
           <label htmlFor="name" className="flex flex-col">
             Name
             <input
-              className="border-black border-[1px] p-2 mt-2 rounded-md"
+              className="border-black border-[1px] p-2 mt-2 rounded-md lg:px-4 lg:py-3"
               placeholder="Sam"
               type="text"
               id="name"
@@ -83,7 +83,7 @@ const ContactForm = () => {
           <label htmlFor="email" className="flex flex-col mt-6">
             Email
             <input
-              className="border-black border-[1px] p-2 mt-2 rounded-md"
+              className="border-black border-[1px] p-2 mt-2 rounded-md lg:px-4 lg:py-3"
               placeholder="samaltman@gmail.com"
               type="email"
               id="email"
@@ -97,7 +97,7 @@ const ContactForm = () => {
           <label htmlFor="phone" className="flex flex-col mt-6">
             Phone
             <input
-              className="border-black border-[1px] p-2 mt-2 rounded-md"
+              className="border-black border-[1px] p-2 mt-2 rounded-md lg:px-4 lg:py-3"
               placeholder="+380441111111"
               type="phone"
               id="phone"
@@ -111,7 +111,7 @@ const ContactForm = () => {
           <label htmlFor="message" className="flex flex-col mt-6">
             Message(max length 300)
             <textarea
-              className="resize-none border-black border-[1px] p-2 mt-2 rounded-md"
+              className="resize-none border-black border-[1px] p-2 mt-2 rounded-md lg:px-4 lg:py-3"
               id="message"
               name="message"
               rows={10}
