@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { headerNavLinksMobile } from "../../../data/Data";
+import { headerNavLinksMobile } from "../../../data";
 
 const Modal = () => {
   return (

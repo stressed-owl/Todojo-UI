@@ -1,5 +1,5 @@
 import Logo from "../common/logo/Logo";
-import { footerMainLinks, footerSocialMediaLinks } from "../../data/Data";
+import { footerMainLinks, footerSocialMediaLinks } from "../../data";
 import { Link } from "react-router-dom";
 
 const Footer = () => {

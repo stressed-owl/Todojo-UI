@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import Typed from "typed.js";
-import { communityNavLinks } from "../../data/Data";
+import { communityNavLinks } from "../../data";
 import CommunityCard from "./communityCard/CommunityCard";
 
 const CommunityPage = () => {
