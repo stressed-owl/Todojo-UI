@@ -54,7 +54,7 @@ const TodoCard = ({
           >
             <Typography
               placeholder={undefined}
-              className="text-[14px] font-bold"
+              className="text-[14px] font-bold sm:text-[12px]"
             >
               {priority}
             </Typography>
@@ -62,13 +62,13 @@ const TodoCard = ({
           <Box>
             <Typography
               placeholder={undefined}
-              className="text-[28px] font-bold text-white"
+              className="text-[28px] font-bold text-white sm:text-[22px]"
             >
               {task}
             </Typography>
             <Typography
               placeholder={undefined}
-              className="text-[22px] font-bold text-white"
+              className="text-[22px] font-bold text-white sm:text-[16px]"
             >
               {description}
             </Typography>
@@ -83,7 +83,7 @@ const TodoCard = ({
             <CalendarTodayIcon className="text-white" />
             <Typography
               placeholder={undefined}
-              className="text-[14px] font-bold text-white"
+              className="text-[14px] font-bold text-white sm:text-[13px]"
             >
               {date}
             </Typography>
