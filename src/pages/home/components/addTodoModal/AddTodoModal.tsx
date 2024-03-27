@@ -42,13 +42,19 @@ const AddTodo = (props: AddTodoModalProps) => {
           maxHeight: 450,
           padding: 4,
           borderRadius: 1,
+          "@media (max-width: 500px)": {
+            width: "100%",
+            height: "100%",
+            maxWidth: "100%",
+            maxHeight: "100%",
+          },
         }}
       >
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
-            rowGap: 2
+            rowGap: 2,
           }}
         >
           <TextField

@@ -28,7 +28,8 @@ const Tasks = () => {
   const [todoStates, setTodoStates] = useState({
     isCreateTodo: false,
     isDeleteTodo: false,
-  })
+    isCompleteTodo: false,
+  });
 
   const handleTaskChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTodo({ ...todo, task: event.target.value });
@@ -53,7 +54,7 @@ const Tasks = () => {
         date: formatTime(),
       };
       createTodo(addedTodo);
-      setTodoStates({...todoStates, isCreateTodo: !todoStates.isCreateTodo});
+      setTodoStates({ ...todoStates, isCreateTodo: !todoStates.isCreateTodo });
     }
     clearInputFields();
     setIsOpenModal(false);
@@ -61,7 +62,7 @@ const Tasks = () => {
 
   const handleDeleteTodo = (todo: Todo) => {
     deleteTodo(todo.id);
-    setTodoStates({...todoStates, isDeleteTodo: !todoStates.isDeleteTodo});
+    setTodoStates({ ...todoStates, isDeleteTodo: !todoStates.isDeleteTodo });
   };
 
   const handleCompleteTodo = (todo: Todo) => {
@@ -69,6 +70,10 @@ const Tasks = () => {
       ...todo,
       completed: true,
     };
+    setTodoStates({
+      ...todoStates,
+      isCompleteTodo: !todoStates.isCompleteTodo,
+    });
     updateTodo(updatedTodo);
     deleteTodo(todo.id);
   };
@@ -79,7 +84,7 @@ const Tasks = () => {
       description: "",
       priority: "",
     });
-  }
+  };
 
   // Handle modal display
 
@@ -90,11 +95,17 @@ const Tasks = () => {
   const handleCloseModal = () => {
     setIsOpenModal(false);
     clearInputFields();
-  }
+  };
 
   useEffect(() => {
     refetch();
-  }, [data, refetch, todoStates.isCreateTodo, todoStates.isDeleteTodo]);
+  }, [
+    data,
+    refetch,
+    todoStates.isCreateTodo,
+    todoStates.isDeleteTodo,
+    todoStates.isCompleteTodo,
+  ]);
 
   return (
     <div className="mt-[150px]">
