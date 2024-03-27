@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { headerNavLinksDesktop } from "../../data/Data";
+import { headerNavLinksDesktop } from "../../data";
 import "../../todojo.css";
 import Logo from "../common/logo/Logo";
 import Modal from "./modal/Modal";

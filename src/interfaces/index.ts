@@ -2,7 +2,9 @@ export interface Todo {
   id?: number;
   task: string;
   description?: string;
+  priority?: string;
   date: string;
+  completed: boolean;
 }
 
 export interface Vacancy {
